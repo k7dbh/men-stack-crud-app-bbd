@@ -1,3 +1,4 @@
+// first step
 const mongoose = require('mongoose');
 
 const businessSchema = new mongoose.Schema(
