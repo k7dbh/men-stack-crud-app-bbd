@@ -1,11 +1,14 @@
 const express = require('express')
 const router = express.Router()
-
+//
 const Business = require('../modules/business')
+// everything in this file has /business front
 
 // TEST ROUTE
-router.get('/', (req,res) => {
-    res.send('do i work?')
+router.get('/', async (req,res) => { // async
+    const allBusinesses = await Business.find() // await
+    console.log('allBusinesses: ', allBusinesses)
+    res.render('businesses/index.ejs', {allBusinesses});
 })
 
 // RENDER NEW BUSINESS FORM
@@ -23,7 +26,15 @@ router.post('/', async (req,res) => {    // add async
     }
     console.log(req.body)
     await Business.create(req.body)            // add await
-    res.redirect('/businesses/new')
+    res.redirect('/businesses')
+})
+
+// SHOW ONE BUSINESS
+router.get('/:businessId', async (req, res) => {
+   const foundBusiness = await Business.findById(req.params.businessId)
+   res.render('businesses/show.ejs',{
+         foundBusiness
+   })
 })
 
 module.exports = router
