@@ -3,6 +3,9 @@ const express = require('express');
 const { default: mongoose } = require('mongoose');
 const app = express();
 const path = require('path')
+//
+const methodOverride = require('method-override')
+const morgan = require('morgan')
 
 // CONTROLLERS to locate the folders  /// --
 const businessController = require('./controllers/businessController')
@@ -16,13 +19,15 @@ mongoose.connection.on('connected', () => {
 // MIDDLEWARE
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extend: false}))
+app.use(methodOverride('_method'))
+app.use(morgan('dev'))
 
 // GET / (home)
 app.get('/', (req, res) => {
     res.render('index.ejs')
 })
 
-// ROUTES to businnessController --
+// ROUTES to businnessController --  &&
 app.use('/businesses', businessController)
 
 app.listen(3000, () => {

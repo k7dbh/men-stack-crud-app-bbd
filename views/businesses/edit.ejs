@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Document</title>
+</head>
+<body>
+       <h1>Edit <%= foundBusiness.name %></h1>
+
+    <form action="/businesses" method="POST">
+    <label for="name">Business Name:</label>
+    <input type="text" name="name" id="name" value="<%= foundBusiness.name %>" />
+
+    <label for="category">Category:</label>
+    <input type="text" name="category" id="category" value="<%= foundBusiness.category %>" />
+
+    <label for="description">Description:</label>
+    <textarea name="description" id="description" rows="4"><%= foundBusiness.description %></textarea>
+
+    <label for="location">Location:</label>
+    <input type="text" name="location" id="location" value="<%= foundBusiness.location %>" />
+
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="tel" name="phoneNumber" id="phoneNumber" value="<%= foundBusiness.phoneNumber %>" />
+
+    <label for="website">Website:</label>
+    <input type="url" name="website" id="website" value="<%= foundBusiness.website %>" />
+
+    <div class="checkbox-div">
+        <label for="isVerified">Verified Listing?</label>
+        <input type="checkbox" name="isVerified" id="isVerified" <% if (foundBusiness.isVerified) { %> checked <% } %> />
+    </div>
+
+    <button type="submit">Edit Business</button>
+  </form>
+</body>
+</html>
