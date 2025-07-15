@@ -4,7 +4,8 @@ const router = express.Router()
 const Business = require('../modules/business')
 // everything in this file has /business front
 
-// TEST ROUTE
+////
+//  TEST ROUTE
 router.get('/', async (req,res) => { // async
     const allBusinesses = await Business.find() // await
     console.log('allBusinesses: ', allBusinesses)
