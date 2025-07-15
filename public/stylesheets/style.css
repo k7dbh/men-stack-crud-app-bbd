@@ -134,3 +134,31 @@ li {
 .delete-button:active {
   background-color: rgb(217, 108, 78);
 }
+.edit-link {
+  text-decoration: none;
+}
+
+.edit-text {
+  background-color: #3f6a51;
+  text-transform: uppercase;
+  padding: 40px 15px;
+  font-size: 1.3em;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  width: 70%;
+  height: 50px;
+}
+
+.edit-text:hover {
+  background-color: #769642;
+}
+
+.edit-text:active {
+  background-color: #2d4d3a;
+  background-color: rgb(217, 108, 78);
+}

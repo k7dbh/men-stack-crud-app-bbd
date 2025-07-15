@@ -24,17 +24,14 @@ router.post('/', async (req,res) => {    // add async
     }else{
         req.body.isVerified = false
     }
-    console.log(req.body)
     await Business.create(req.body)            // add await
-    res.redirect('/businesses')
+    res.redirect('/businesses/')
 })
 
 // SHOW ONE BUSINESS -- &&
 router.get('/:businessId', async (req, res) => {
    const foundBusiness = await Business.findById(req.params.businessId)
-   res.render('businesses/show.ejs',{
-         foundBusiness
-   })
+   res.render('./businesses/show.ejs',{  foundBusiness: foundBusiness  })
 })
 
 /////////////////// day 2 progress ////////////////////////////
@@ -45,9 +42,20 @@ router.delete('/:businessId', async (req, res) => {
 
 // GET /businesses/:businessId/edit
 // controller function should render 'businesses/edit.ejs' <--- ejs file should have edit form
-router.get('/:businesses/edit', async (req,res) => {
+router.get('/:businessId/edit', async (req,res) => {
     const foundBusiness = await Business.findById(req.params.businessId)
     res.render('businesses/edit.ejs', {foundBusiness: foundBusiness})
+})
+
+// PUT for submitting the form
+router.put('/:businessId', async (req,res) => {
+   if(req.body.isVerified === 'on') {
+    req.body.isVerified = true
+   }else{
+    req.body.isVerified = false
+   }
+   await Business.findByIdAndUpdate(req.params.businessId, req.body)
+   res.redirect(`/businesses/${req.params.businessId}`)
 })
 
 module.exports = router

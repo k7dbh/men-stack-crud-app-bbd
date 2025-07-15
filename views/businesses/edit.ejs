@@ -9,7 +9,7 @@
 <body>
        <h1>Edit <%= foundBusiness.name %></h1>
 
-    <form action="/businesses" method="POST">
+    <form action="/businesses/<%= foundBusiness._id %>?_method=PUT" method="POST">
     <label for="name">Business Name:</label>
     <input type="text" name="name" id="name" value="<%= foundBusiness.name %>" />
 
